@@ -1,0 +1,53 @@
+
+---------------------------------------------------------------------------------------------------------------
+S = cust, prod, 1_avg_quant, 1_count_quant, 1_sum_quant, 2_avg_quant, 2_count_quant, 2_sum_quant
+N = 2
+V = cust, prod
+F = 1_avg_quant, 1_count_quant, 1_sum_quant, 2_avg_quant, 2_count_quant, 2_sum_quant
+σ = 1 state == 'NJ', 2 state == 'NY'
+G = 
+# Table to show the average, count, and sum of quantity sold in NJ vs NY for each customer and product
+
+
+S = prod, 1_count_quant, 2_count_quant
+N = 2
+V = prod
+F = 1_count_quant, 2_count_quant
+σ = 1 state == 'NJ', 2 state == 'NY'
+G = 1_count_quant > 1.01 * 2_count_quant
+# Table to show the products that have sold at least 1% more times in NJ than NY
+
+
+S = prod, month, 1_sum_quant, 2_sum_quant
+N = 2
+V = prod, month
+F = 1_sum_quant, 2_sum_quant
+σ = 1 state == 'NJ' and 1 year == 2020, 2 state == 'NY' and 2 year == 2020
+G = 
+# Table to compare the total quantity sold during each month of 2020 and for each prod in NY vs NJ
+
+
+S = cust, 1_avg_quant, 2_avg_quant, 3_avg_quant, 4_avg_quant
+N = 4
+V = cust, prod
+F = 1_avg_quant, 2_avg_quant, 3_avg_quant, 4_avg_quant
+σ = 1 month < 3 and 1 year == 2020, 2 month >= 3 and 2 month < 6 and 2 year == 2020, 3 month >= 6 and 3 month < 8 and 3 year == 2020, 4 month >= 8 and 4 year == 2020
+G = 1_avg_quant > 2_avg_quant and 1_avg_quant > 3_avg_quant and 1_avg_quant > 4_avg_quant 
+# Table to compare the average quantity sales for each quarter of 2020, grouped by customer and product, having q1 average is greater than the other quarters
+
+
+S = prod, 0_min_quant, 0_max_quant, 1_min_quant, 1_max_quant
+N = 2
+V = prod
+F = 0_min_quant, 0_max_quant, 1_min_quant, 1_max_quant
+σ = 1 state == 'NY'
+G = 
+# Table to compare the min/max quantity sales in NY and overall for each product
+
+
+S = List of projected attributes for the query output
+N = Number of grouping variables
+V = List of grouping attributes
+F = List of aggregate functions
+σ = List of predicates for the grouping variables
+G = Predicate for the having clause
